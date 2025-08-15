@@ -1,6 +1,11 @@
 import pyttsx3
 from pynput.mouse import Listener
 
+# 初始化语音引擎
+engine = pyttsx3.init()
+rate = engine.getProperty('rate')
+engine.setProperty('rate', 175)
+
 clicks = []
 
 
@@ -29,17 +34,7 @@ if len(clicks) >= 4:
 # 获得输出值
 distance=100/distance1*distance2
 
-# 初始化语音引擎
-engine = pyttsx3.init()
-# 设置语速
-rate = engine.getProperty('rate')
-engine.setProperty('rate', 165)
 # 语音输出结果
-# 获取可用语音列表
-voices = engine.getProperty('voices')
-if len(voices) > 0:
-    engine.setProperty('voice', voices[0].id)
 # 语音输出
 engine.say(f"{distance:.1f}")
-
 engine.runAndWait()
